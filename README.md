@@ -8,7 +8,7 @@ Odkaz k prohlédnutí výsledků najdete [zde](https://www.volby.cz/).
 
 ## 📌 Popis projektu
 
-Skript `main.py` načte výsledky voleb z veřejného webu volby.cz pro zadaný kraj nebo okres.  
+Skript `projekt_3.py` načte výsledky voleb z veřejného webu volby.cz pro zadaný kraj nebo okres.  
 Pro každou obec získá detailní výsledky včetně počtu voličů, obálek, platných hlasů a výsledků všech kandidujících stran.  
 Výsledky jsou uloženy do CSV souboru, který si uživatel určí při spuštění.
 
@@ -22,60 +22,66 @@ Doporučujeme použít virtuální prostředí.
 Pro instalaci spusť:
 
 ```bash
-$ pip3 --version                     # ověření verze správce balíčků
-$ pip3 install -r requirements.txt  # instalace potřebných knihoven
+pip3 install -r requirements.txt
 ```
 
 ---
 
 ## 🚀 Spuštění projektu
 
-Spuštění skriptu `main.py` v příkazové řádce vyžaduje **2 argumenty**:
+Spuštění skriptu `projekt_3.py` v příkazové řádce vyžaduje **2 argumenty**:
 
 ```bash
-python main.py <url-obce-nebo-kraje> <nazev-vystupniho-souboru.csv>
+python projekt_3.py <url-obce-nebo-kraje> <nazev-vystupniho-souboru.csv>
 ```
 
 Například:
 
 ```bash
-python main.py "https://www.volby.cz/pls/ps2017nss/ps32?xjazyk=CZ&xkraj=1&xnumnuts=1100" vysledky_praha.csv
+python projekt_3.py "https://www.volby.cz/pls/ps2017nss/ps32?xjazyk=CZ&xkraj=1&xnumnuts=1100" vysledky_praha.csv
 ```
 
-> Pokud nejsou zadány správně oba argumenty, skript upozorní a ukončí se.
+Pokud nejsou zadány přesně 2 argumenty, skript vypíše upozornění:
+
+```
+ Chyba: Zadej 2 argumenty – URL a název výstupního CSV souboru.
+ Příklad: python projekt_3.py https://... vysledky.csv
+```
 
 ---
 
 ## 💻 Ukázka projektu
 
-Výsledky hlasování pro okres Prostějov:
+Výsledky hlasování pro Prahu:
 
 - **1. argument (URL):**  
-  `https://volby.cz/pls/ps2017nss/ps32?xjazyk=CZ&xkraj=12&xnumnuts=7103`
+  `https://www.volby.cz/pls/ps2017nss/ps32?xjazyk=CZ&xkraj=1&xnumnuts=1100`
 - **2. argument (výstupní CSV):**  
-  `vysledky_prostejov.csv`
+  `vysledky_praha.csv`
 
 ### Spuštění programu:
 
 ```bash
-python main.py "https://volby.cz/pls/ps2017nss/ps32?xjazyk=CZ&xkraj=12&xnumnuts=7103" vysledky_prostejov.csv
+python projekt_3.py "https://www.volby.cz/pls/ps2017nss/ps32?xjazyk=CZ&xkraj=1&xnumnuts=1100" vysledky_praha.csv
 ```
 
-### Průběh stahování:
+### Průběh stahování v terminálu:
 
 ```
-STAHL JSEM DATA Z VYBRANEHO URL: https://volby.cz/pls/ps2017nss/ps32?xjazyk=CZ&xkraj=12&xnumnuts=7103
-UKLÁDÁM DO SOUBORU: vysledky_prostejov.csv
-UKONČUJI election-scraper
+ Načítám stránku s výsledky...
+ Nalezeno 57 obcí. Zpracovávám...
+   ➜ 1/57: Praha 1
+   ➜ 2/57: Praha 2
+   ...
+ Hotovo! Výsledek uložen do vysledky_praha.csv
 ```
 
-### Částečný výstup:
+### Částečný výstup CSV:
 
 ```csv
-code;location;registered;envelopes;valid;Občanská demokratická strana;...
-506761;Alojzov;205;145;144;29;...
-589268;Bedihošť;834;527;524;51;...
-...
+Kód obce;Název obce;Voliči v seznamu;Vydané obálky;Platné hlasy;Občanská demokratická strana;...
+500001;Praha 1;5678;3456;3400;123;...
+500002;Praha 2;6789;4567;4500;234;...
 ```
 
 ---
@@ -85,9 +91,9 @@ code;location;registered;envelopes;valid;Občanská demokratická strana;...
 ```
 Elections-Scraper/
 │
-├── main.py             # hlavní Python skript
-├── requirements.txt    # seznam požadovaných knihoven
-└── README.md           # tento soubor s dokumentací
+├── projekt_3.py         # hlavní Python skript
+├── requirements.txt     # seznam požadovaných knihoven
+└── README.md            # tento soubor s dokumentací
 ```
 
 ---
