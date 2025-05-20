@@ -65,7 +65,7 @@ def save_csv(data_rows, party_names, filename):
 def main():
     if len(sys.argv) != 3:
         print(" Chyba: Zadej 2 argumenty – URL a název výstupního CSV souboru.")
-        print(" Příklad: python projekt_3.py https://... vysledky.csv")
+        print(" Příklad: python main.py https://... vysledky.csv")
         return
 
     url = sys.argv[1]
